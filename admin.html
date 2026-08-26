@@ -77,5 +77,44 @@
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
 <script src="firebase-config.js"></script>
 <script src="admin.js"></script>
+  <!-- Firebase Core and Firestore SDK Libraries -->
+<script type="module">
+  import { initializeApp } from "https://gstatic.com";
+  import { getFirestore, collection, query, orderBy, onSnapshot } from "https://gstatic.com";
+
+  // 1. Connection credentials (Exact same keys)
+  const firebaseConfig = {
+    apiKey: "AIzaSyCEPmya9Ij1FNXbQkE1uC8nGPQtpYw_kk8",
+    authDomain: "://firebaseapp.com",
+    projectId: "qr-services-and-products",
+    storageBucket: "qr-services-and-products.firebasestorage.app",
+    messagingSenderId: "20494967096",
+    appId: "1:20494967096:web:cb940d443c034f53c121cd"
+  };
+
+  // 2. Initialize connection
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  // 3. Point to the orders collection, ordered by newest first
+  const q = query(collection(db, "orders"), orderBy("createdAt", "desc"));
+
+  // 4. THE LIVE REAL-TIME SYNCHRONIZER
+  onSnapshot(q, (snapshot) => {
+    console.log("--- Real-time Kitchen Update Received! ---");
+    
+    // Clear out your current active HTML dashboard view here first so lists don't double up
+    // e.g., document.getElementById("kitchen-live-orders-container").innerHTML = "";
+
+    snapshot.forEach((doc) => {
+      const order = doc.data();
+      console.log(`Live Order ID: ${doc.id}`, order);
+      
+      // EXERCISE: Write your custom UI rendering code right here!
+      // You can pull order.table, order.items, and order.total 
+      // and append them right onto your admin dashboard panels dynamically.
+    });
+  });
+</script>
 </body>
 </html>
