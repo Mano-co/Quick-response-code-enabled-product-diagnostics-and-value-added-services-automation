@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>SmartBite — Admin / Kitchen Dashboard</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body class="admin-body">
+<div class="admin-shell">
+  <div class="admin-sidebar">
+    <div class="brand">🍽️ SmartBite Admin</div>
+    <button data-panel="dashboard" class="active" onclick="showPanel('dashboard')">📊 Dashboard</button>
+    <button data-panel="tables" onclick="showPanel('tables')">🪑 Tables</button>
+    <button data-panel="orders" onclick="showPanel('orders')">🧾 Orders / Kitchen</button>
+    <button data-panel="inventory" onclick="showPanel('inventory')">📦 Inventory</button>
+    <button data-panel="payments" onclick="showPanel('payments')">💳 Payments</button>
+    <button data-panel="bookings" onclick="showPanel('bookings')">🎫 Bookings</button>
+    <div style="flex:1"></div>
+    <span class="demo-badge" id="adminDbBadge" style="align-self:flex-start">Demo</span>
+  </div>
+
+  <div class="admin-main">
+
+    <!-- DASHBOARD -->
+    <section class="admin-panel active" id="panel-dashboard">
+      <div class="section-title"><h2>Overview</h2><span class="pill" id="dashRush">🟢 LOW RUSH</span></div>
+      <div class="stat-grid">
+        <div class="stat-card"><div class="muted">Total Tables</div><div class="num" id="statTotalTables">0</div></div>
+        <div class="stat-card"><div class="muted">Available</div><div class="num" id="statAvailTables">0</div></div>
+        <div class="stat-card"><div class="muted">Occupied</div><div class="num" id="statOccTables">0</div></div>
+        <div class="stat-card"><div class="muted">Active Orders</div><div class="num" id="statActiveOrders">0</div></div>
+        <div class="stat-card"><div class="muted">Revenue (demo)</div><div class="num" id="statRevenue">₹0</div></div>
+      </div>
+      <div id="idleAlerts"></div>
+    </section>
+
+    <!-- TABLES -->
+    <section class="admin-panel" id="panel-tables">
+      <div class="section-title"><h2>Tables</h2></div>
+      <div class="admin-grid-tables" id="adminTableGrid"></div>
+    </section>
+
+    <!-- ORDERS / KITCHEN -->
+    <section class="admin-panel" id="panel-orders">
+      <div class="section-title"><h2>Kitchen — Live Orders</h2></div>
+      <div id="kitchenOrders"></div>
+    </section>
+
+    <!-- INVENTORY -->
+    <section class="admin-panel" id="panel-inventory">
+      <div class="section-title"><h2>Inventory & Menu Control</h2></div>
+      <div class="inv-row head">
+        <div>Item</div><div>Stock</div><div>Adjust</div><div>Availability</div><div>Slot</div>
+      </div>
+      <div id="inventoryList"></div>
+    </section>
+
+    <!-- PAYMENTS -->
+    <section class="admin-panel" id="panel-payments">
+      <div class="section-title"><h2>Payments</h2></div>
+      <div id="paymentsList"></div>
+    </section>
+
+    <!-- BOOKINGS -->
+    <section class="admin-panel" id="panel-bookings">
+      <div class="section-title"><h2>Bookings</h2></div>
+      <div id="bookingsList"></div>
+    </section>
+
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+<script src="firebase-config.js"></script>
+<script src="admin.js"></script>
+</body>
+</html>
