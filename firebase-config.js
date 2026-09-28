@@ -1,17 +1,16 @@
-
 /* ============================================================
    FIREBASE CONFIGURATION — SmartBite
    Project: qr-based-real-time
    ============================================================ */
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAE91AZb0eUFsxLBFC6BAGrnK85MI4g4lU",
+  apiKey: "AIzaSyAe91AZbOeUfsXLBFC6BAGrnK8SMI4g4LU",
   authDomain: "qr-based-real-time.firebaseapp.com",
   projectId: "qr-based-real-time",
   storageBucket: "qr-based-real-time.firebasestorage.app",
   messagingSenderId: "804022221103",
   appId: "1:804022221103:web:c2dfbf29feaa0d08f8c9da",
-  measurementId: "G-6DBJ0V5LEQ"
+  measurementId: "G-6DBJ0VSLEQ"
 };
 
 let db = null;
