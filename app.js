@@ -180,7 +180,8 @@ function startArrivalTimer() {
   arrivalIntervalId = setInterval(paintArrival, 1000); // single interval; reads the latest booking
 }
 function paintArrival() {
-  const b = arrivalBooking; if (!b) return;
+  const b = arrivalBooking;
+  if (!b) { $("arrivalTimer").textContent = "--:--"; $("arrivalStatus").textContent = "Loading your booking… If this stays, go Home and book a table again."; return; }
   if (b.status === "CANCELLED") { $("arrivalTimer").textContent = "00:00"; $("arrivalStatus").textContent = "Booking cancelled — the table was released."; clearInterval(arrivalIntervalId); return; }
   if (b.status !== "CONFIRMED") { $("arrivalTimer").textContent = "✓"; $("arrivalStatus").textContent = "You are checked in."; clearInterval(arrivalIntervalId); return; }
   const remaining = b.arrivalDeadline - Date.now();
@@ -431,6 +432,11 @@ function buildReceipt(order) {
     '<div class="line"><span>Status</span><span>✓ PAID (DEMO — simulated)</span></div>' +
     '<p class="center-text" style="margin-top:10px">Thank you for dining with us!</p>';
   window._lastReceipt = order;
+}
+function printReceipt() {
+  document.body.classList.add("print-receipt");
+  window.addEventListener("afterprint", () => document.body.classList.remove("print-receipt"), { once: true });
+  window.print();
 }
 function sendReceiptWhatsapp() {
   const o = window._lastReceipt || currentOrder();
