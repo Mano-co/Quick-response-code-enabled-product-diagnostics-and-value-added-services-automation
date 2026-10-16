@@ -1,0 +1,11 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MH Cinemas</title><link rel="stylesheet" href="style.css">
+<style>.seats{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:6px}.seat{aspect-ratio:1;border:1px solid var(--ink);border-radius:8px;background:#e6f2ea;font-size:.7rem;padding:0}
+.seat.t{background:#ccc;color:#888;cursor:not-allowed}.seat.s{background:var(--marigold);font-weight:700}.row{display:flex;justify-content:space-between;gap:8px;align-items:center;margin:6px 0}input{width:100%;padding:10px;border-radius:10px;border:1px solid var(--ink)}</style></head>
+<body><div class="app-shell" id="theatreApp">
+<div class="topbar"><div class="brand">🎬 MH Cinemas</div><div class="spacer"></div><a href="index.html" class="btn btn-ghost btn-sm">🏬 MH Mall</a><span class="demo-badge" id="dbBadge">Demo</span></div>
+<section class="screen active"><div id="v"></div></section></div>
+<script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+<script src="firebase-config.js"></script><script src="common.js"></script><script src="theatre.js"></script></body></html>
